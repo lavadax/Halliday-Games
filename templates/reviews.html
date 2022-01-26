@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>I'm the extension!</h2>
+    {% for review in reviews %}
+        {{ review.game_title }}<br>
+        {{ review.review_title }}<br>
+        {{ review.score }}<br>
+        {{ review.review_summary }}<br><br>
+    {% endfor %}
+{% endblock %}
