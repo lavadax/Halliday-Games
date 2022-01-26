@@ -1,13 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <!-- TODO update href and src to GitHub -->
-    <a href="#">
+    <a href="https://halliday-games.herokuapp.com">
         <img src="static/images/logo.png" alt="Logo" width="200" height="200">
     </a>
 </p>
 
-<!-- TODO add description & links -->
 <p align="center">
     <h2 align="center">Halliday Games</h2>
     <br />
@@ -17,7 +15,7 @@
         <a href="#"><strong>Explore the docs »</strong></a>
         <br />
         <br />
-        <a href="#">View Demo</a>
+        <a href="https://halliday-games.herokuapp.com">View Live Project</a>
         ·
         <a href="https://github.com/lavadax/Halliday-Games/issues">Report Bug</a>
         ·
@@ -152,10 +150,10 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Wireframes
 
-All wireframes are in a single file and can be found [here](https://github.com/lavadax/Halliday-Games/blob/master/documentation/wireframes/wireframes.png). <!-- TODO Add wireframe link -->
+All wireframes are in a single file and can be found [here](https://github.com/lavadax/Halliday-Games/blob/master/documentation/wireframes/wireframes.png).
 
 ### User Stories
-<!-- TODO Add user stories -->
+
 #### First Time Visitors
 
 * As a new user, I want to easily understand the purpose of the site.  
@@ -171,8 +169,6 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 <!-- ROADMAP -->
 ## Roadmap
 
-<!-- TODO Add roadmap -->
-
 0.1.0: Flask Setup: Finish setting up the start of the Flask app.
 0.2.0: MongoDB Setup: Finish setting up the MongoDB collection and link it to the Flask app.
 0.3.0: First Base: Finish setting up the base template, using Jinja.
@@ -186,11 +182,11 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 <!-- TODO Add plans -->
 
 ### Open Issues
-<!-- TODO Add link -->
+
 See the [open issues](https://github.com/lavadax/Halliday-Games/issues) for a list of proposed features (and known issues).
 
 ### Past Issues
-<!-- TODO Add link -->
+
 See the [closed issues](https://github.com/lavadax/Halliday-Games/issues?q=is%3Aissue+is%3Aclosed) for a list of the past issues.
 
 Notable past issues:  
@@ -235,8 +231,8 @@ Contributions are what make the open source community such an amazing place to l
 
 <!-- LICENSE -->
 ## License
-<!-- TODO Add link -->
-Distributed under the MIT License. See [`LICENSE`](#) for more information.
+
+Distributed under the MIT License. See [`LICENSE`](https://github.com/lavadax/Halliday-Games/blob/master/LICENSE.txt) for more information.
 
 
 
@@ -244,8 +240,8 @@ Distributed under the MIT License. See [`LICENSE`](#) for more information.
 ## Contact
 
 Lavadax - [Twitter](https://twitter.com/LavadaxTwitch) - [facebook](https://www.facebook.com/kevin.schepers.5)
-<!-- TODO Add link -->
-Project Link: [#](#)
+
+Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 
 
 
