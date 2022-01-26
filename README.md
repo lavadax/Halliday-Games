@@ -1,26 +1,28 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <!-- TODO update href and src to GitHub & Logo link -->
+    <!-- TODO update href and src to GitHub -->
     <a href="#">
-        <img src="#" alt="Logo" width="200" height="200">
+        <img src="static/images/logo.png" alt="Logo" width="200" height="200">
     </a>
+</p>
 
-<!-- TODO add title, description & links -->
-  <p align="center">
-    PROJECT TITLE
+<!-- TODO add description & links -->
+<p align="center">
+    <h2 align="center">Halliday Games</h2>
     <br />
-    This is a description
-    <br />
-    <a href="#"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="#">View Demo</a>
-    ·
-    <a href="#">Report Bug</a>
-    ·
-    <a href="#">Request Feature</a>
-  </p>
+    <p align="center">
+        3rd milestone project for CodeInstitute course. This is mostly focused on Python, Flask and MongoDB.
+        <br />
+        <a href="#"><strong>Explore the docs »</strong></a>
+        <br />
+        <br />
+        <a href="#">View Demo</a>
+        ·
+        <a href="https://github.com/lavadax/Halliday-Games/issues">Report Bug</a>
+        ·
+        <a href="https://github.com/lavadax/Halliday-Games/issues">Request Feature</a>
+    </p>
 </p>
 
 
@@ -87,14 +89,16 @@ Below you can see a few screenshots of the finished project.
 
 <!-- TODO Add/remove software/pages used -->
 * [Gitpod](https://www.gitpod.io/) / [Gitpod Chrome extension](https://chrome.google.com/webstore/detail/gitpod-dev-environments-i/dodmmooeoklaejobgleioelladacbeki) - Used to develop the site and push the project to Github.
-* [GitHub](https://github.com) - Used to host the project during and after development.
-* [MockFlow](https://mockflow.com/) - Used to set up the wireframes at the start of the dev cycle.  
+* [GitHub](https://github.com) - Used for version control.
+* [Whimsical](https://whimsical.com/) - Used to set up the wireframes at the start of the dev cycle.  
 * [favicon.io](https://favicon.io/favicon-converter/) - Used to generate the favicon files.  
+* [heroku](https://heroku.com) - Used to host the project.  
+* [MongoDB](https://www.mongodb.com) - Used to store server data which is used to populate site pages
 
 
 <!-- DEPLOYMENT -->
 ## Deployment
-
+<!-- TODO Add instructions on heroku deployment -->
 ### GitHub Pages
 
 The project was deployed to GitHub Pages using the following steps...
@@ -148,17 +152,20 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Wireframes
 
-All wireframes are in a single file and can be found [here](#). <!-- TODO Add wireframe link -->
+All wireframes are in a single file and can be found [here](https://github.com/lavadax/Halliday-Games/blob/master/documentation/wireframes/wireframes.png). <!-- TODO Add wireframe link -->
 
 ### User Stories
 <!-- TODO Add user stories -->
 #### First Time Visitors
 
-* As a new user, I want to 
+* As a new user, I want to easily understand the purpose of the site.  
+* As a new user, I want to be able to easily navigate the site and access the content it provides.  
+* As a new user, I want to easily find where to sign up an account.
 
 #### Returning Visitors
 
-* As a returning user, 
+* As a returning user, I want to easily log into my account.  
+* As a returning user, I want to be able to easily navigate the site and submit new reviews.
 
 
 <!-- ROADMAP -->
