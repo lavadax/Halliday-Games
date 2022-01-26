@@ -173,6 +173,13 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 
 <!-- TODO Add roadmap -->
 
+0.1.0: Flask Setup: Finish setting up the start of the Flask app.
+0.2.0: MongoDB Setup: Finish setting up the MongoDB collection and link it to the Flask app.
+0.3.0: First Base: Finish setting up the base template, using Jinja.
+0.4.0: Static Deployment: Flesh out the base template and include static files.
+0.5.0: Navi: Set up functioning nav bar, start working on other pages.
+0.6.0: Users: Set up user login and logout functionality.
+1.0.0: Reviews: Add CRUD functionality to reviews.
 
 ### Future Plans
 
@@ -180,11 +187,11 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 
 ### Open Issues
 <!-- TODO Add link -->
-See the [open issues](#) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/lavadax/Halliday-Games/issues) for a list of proposed features (and known issues).
 
 ### Past Issues
 <!-- TODO Add link -->
-See the [closed issues](#) for a list of the past issues.
+See the [closed issues](https://github.com/lavadax/Halliday-Games/issues?q=is%3Aissue+is%3Aclosed) for a list of the past issues.
 
 Notable past issues:  
 <!-- TODO Add major bugs encountered during dev process -->
