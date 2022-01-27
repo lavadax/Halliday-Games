@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2 class="center">I'm the extension!</h2>
+    {% block search %}
+    {% endblock %}
     {% if reviews|length > 0 %}
         <div class="row">
             {% for review in reviews %}
