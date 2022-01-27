@@ -1,23 +1,21 @@
 {% extends "reviews.html" %}
 {% block search %}
-    <div class="row">
-        <div class="col s3 offset-s3">
-            <label for="title">Game Title: </label>
-            <input type="text" name="title" id="title">
+    <div class="row valign-wrapper" id="search-bar">
+        <div class="col s6">
+            <div class="input-field margin-right right">
+                <input id="game-title" type="text" class="validate">
+                <label for="game-title">Game Title: </label>
+            </div>
         </div>
-        <div class="col s3">
-            <label for="genre">Genre(s): </label>
-            <div class="input-field">
+        <div class="col s6">
+            <div class="input-field margin-left">
                 <select multiple>
-                  <option value="" disabled selected></option>
+                  <option value="" disabled selected>Genre(s)</option>
                   <option value="1">Genre 1</option>
                   <option value="2">Genre 2</option>
                   <option value="3">Genre 3</option>
                 </select>
               </div>
-        </div>
-        <div class="col s3">
-            <i class="fas fa-filter"></i>
         </div>
     </div>
 {% endblock %}
