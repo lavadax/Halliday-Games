@@ -53,6 +53,11 @@ def get_account():
     return render_template("account.html")
 
 
+@app.route("/read_review")
+def read_review():
+    return render_template("read_review.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
