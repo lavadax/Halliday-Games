@@ -1,3 +1,9 @@
+/* Header */
+
+header {
+    border-bottom: 5px solid #b71c1c;
+}
+
 /* Logo  */
 
 .brand-logo, .brand-logo img {
@@ -40,7 +46,7 @@ h3 {
 
 /* Input fields */
 
-.input-field {
+#search-bar .col .input-field {
     max-width: 200px;
 }
 
@@ -52,6 +58,13 @@ h3 {
     margin-left: 15px;
 }
 
+/* Buttons */
+
+button.btn-large {
+    border: 2px solid #b71c1c;
+    border-radius: 7px;
+}
+
 /* Footer */
 
 footer {
@@ -60,7 +73,7 @@ footer {
     height: 85px;
     width:100%;
     float: left;
-    border-top: 5px solid #CD1717;
+    border-top: 5px solid #b71c1c;
     background-color: #000;
     color:#fff;
 }
