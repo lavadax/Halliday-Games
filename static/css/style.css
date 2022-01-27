@@ -12,6 +12,12 @@ nav {
     background-color: #000;
 }
 
+/* Card styling */
+
+.xsmall {
+    height: 170px;
+}
+
 /* Responsiveness */
 
 /* Medium screens and larger */
