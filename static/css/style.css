@@ -1,4 +1,4 @@
-/* Logo styling */
+/* Logo  */
 
 .brand-logo, .brand-logo img {
     top: 0;
@@ -6,16 +6,67 @@
     height: 56px;   
 }
 
-/* Nav bar styling */
+/* Nav bar */
 
 nav {
     background-color: #000;
 }
 
-/* Card styling */
+/* Main content */
+
+.main-content {
+    min-height: calc(100vh - 56px - 85px);
+}
+
+/* Cards */
 
 .xsmall {
     height: 170px;
+}
+
+/* Footer */
+
+footer {
+    padding: 0;
+    margin: 0;
+    height: 85px;
+    width:100%;
+    float: left;
+    border-top: 5px solid #CD1717;
+    background-color: #000;
+    color:#fff;
+}
+
+footer .container {
+    height:80px;
+    width: 100%;
+    padding:0 0 0 10px;
+    margin: 0;
+}
+
+footer p {
+    padding:10px 0;
+}
+
+.footer-row {
+    height:80px;
+    display:flex;
+}
+
+.footer-row div {
+    max-height: 100%;
+}
+
+.container .footer-row .copyright {
+    margin-left: 0;
+}
+
+.container .footer-row .socials {
+    position:absolute;
+    right:0.5%;
+    font-size: 1.5em;
+    text-align: right;
+    padding-top: 22px;
 }
 
 /* Responsiveness */
@@ -24,14 +75,20 @@ nav {
 
 @media only screen and (min-width: 601px) {
 
-    /* Logo styling */
+    /* Logo */
 
     .brand-logo, .brand-logo img {
         width: 64px;
         height: 64px;
     }
 
-    /* Card styling */
+    /* Main content */
+
+    .main-content {
+        min-height: calc(100vh - 64px - 85px);
+    }
+
+    /* Cards */
 
     .row .m6:nth-child(odd){
         padding-left:  5%;
