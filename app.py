@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -41,6 +41,16 @@ def register():
 @app.route("/add_review")
 def add_review():
     return render_template("add_review.html")
+
+
+@app.route("/logout")
+def logout():
+    return redirect(url_for("login"))
+
+
+@app.route("/get_account")
+def get_account():
+    return render_template("account.html")
 
 
 if __name__ == "__main__":
