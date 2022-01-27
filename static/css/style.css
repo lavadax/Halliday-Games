@@ -18,10 +18,31 @@ nav {
     min-height: calc(100vh - 56px - 85px);
 }
 
-/* Cards */
+/* Search bar */
 
-.xsmall {
-    height: 170px;
+#search-bar {
+    border-bottom: 1px solid black;
+}
+
+/* Input labels */
+
+.input-field>label {
+    font-size: 1rem;
+    color: #000;
+}
+
+/* Input fields */
+
+.input-field {
+    max-width: 200px;
+}
+
+.margin-right {
+    margin-right: 15px;
+}
+
+.margin-left {
+    margin-left: 15px;
 }
 
 /* Footer */
@@ -66,7 +87,6 @@ footer p {
     right:0.5%;
     font-size: 1.5em;
     text-align: right;
-    padding-top: 22px;
 }
 
 /* Responsiveness */
@@ -103,6 +123,8 @@ footer p {
 /* Small screens */
 
 @media only screen and (max-width: 600px) {
+
+    /* Cards */
 
     .row .m6{
         padding: 0 5%;
