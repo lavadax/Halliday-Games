@@ -18,6 +18,13 @@ nav {
     min-height: calc(100vh - 56px - 85px);
 }
 
+/* H3 box styling override */
+
+h3 {
+    margin: 0 0 1.168rem 0;
+    padding-top: 1.9rem;
+}
+
 /* Search bar */
 
 #search-bar {
