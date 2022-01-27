@@ -27,7 +27,7 @@
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <!-- 3 below only when logged in -->
-                    <li><a href="#">Create Review</a></li>
+                    <li><a href="{{ url_for('add_review') }}">Create Review</a></li>
                     <li><a href="#">Log Out</a></li>
                     <li><a href="#">Account</a></li>
                 </ul>
@@ -42,7 +42,7 @@
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <!-- 3 below only when logged in -->
-            <li><a href="#">Create Review</a></li>
+            <li><a href="{{ url_for('add_review') }}">Create Review</a></li>
             <li><a href="#">Log Out</a></li>
             <li><a href="#">Account</a></li>
         </ul>
