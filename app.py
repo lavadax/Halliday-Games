@@ -21,6 +21,10 @@ def get_reviews():
     reviews = list(mongo.db.reviews.find())
     return render_template("reviews.html", reviews=reviews)
 
+@app.route("/search")
+def search():
+    reviews = list(mongo.db.reviews.find())
+    return render_template("search.html", reviews=reviews)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
