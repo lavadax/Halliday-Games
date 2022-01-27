@@ -24,7 +24,7 @@
                     <!-- Add search bar & magnifying glass icon -->
                     <li><a href="{{ url_for('search') }}">Top Reviews</a></li>
                     <!-- 2 below only when not logged in -->
-                    <li><a href="#">Log In</a></li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a href="#">Register</a></li>
                     <!-- 3 below only when logged in -->
                     <li><a href="#">Create Review</a></li>
@@ -39,7 +39,7 @@
             <!-- Add search bar & magnifying glass icon -->
             <li><a href="{{ url_for('search') }}">Top Reviews</a></li>
             <!-- 2 below only when not logged in -->
-            <li><a href="#">Log In</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="#">Register</a></li>
             <!-- 3 below only when logged in -->
             <li><a href="#">Create Review</a></li>
