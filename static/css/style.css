@@ -1,0 +1,47 @@
+/* Logo styling */
+
+.brand-logo, .brand-logo img {
+    top: 0;
+    width: 56px;
+    height: 56px;   
+}
+
+/* Nav bar styling */
+
+nav {
+    background-color: #000;
+}
+
+/* Responsiveness */
+
+/* Medium screens and larger */
+
+@media only screen and (min-width: 601px) {
+
+    /* Logo styling */
+
+    .brand-logo, .brand-logo img {
+        width: 64px;
+        height: 64px;
+    }
+
+    /* Card styling */
+
+    .row .m6:nth-child(odd){
+        padding-left:  5%;
+    }
+    
+    .row .m6:nth-child(even){
+        padding-right:  5%;
+    }
+
+}
+
+/* Small screens */
+
+@media only screen and (max-width: 600px) {
+
+    .row .m6{
+        padding: 0 5%;
+    }
+}
