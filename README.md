@@ -250,3 +250,4 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 <!-- TODO Add acknowledgements -->
 * [github.com/othneildrew](https://github.com/othneildrew/Best-README-Template): for providing the readme template.
 * [github.com/Code-Institute-Solutions](https://github.com/Code-Institute-Solutions/SampleREADME): for filling in gaps in the readme template.
+* [regex101.com](https://regex101.com/library/Yvqkci): for providing the regex used for password pattern.
