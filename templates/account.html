@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <h3 class="center-align">
-        Hello [USER]. Not you? 
+        Hello {{ user }}. Not you? 
         <a href="{{ url_for('logout') }}" class="light-blue-text text-darken-4">Log out here!</a>
     </h3>
 {% endblock %}
