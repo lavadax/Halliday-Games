@@ -192,6 +192,9 @@ See the [closed issues](https://github.com/lavadax/Halliday-Games/issues?q=is%3A
 Notable past issues:  
 <!-- TODO Add major bugs encountered during dev process -->
 
+* HTTP 405 on registration POST: I was getting HTTP 405 errors when attempting to sign up, as my registration form was set up to log in the user after successful registration, however I kept receiving the 405 due to not setting up a POST method on the login function.
+  
+* Unable to load profile: the href for the account button in the nav bar used to be "{{ url_for('get_account', username=session['user']) }}", while I used "user" instead of "username" in other pages, causing issues loading the page.
 
 
 <!-- TESTING -->
@@ -250,4 +253,5 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 <!-- TODO Add acknowledgements -->
 * [github.com/othneildrew](https://github.com/othneildrew/Best-README-Template): for providing the readme template.
 * [github.com/Code-Institute-Solutions](https://github.com/Code-Institute-Solutions/SampleREADME): for filling in gaps in the readme template.
-* [regex101.com](https://regex101.com/library/Yvqkci): for providing the regex used for password pattern.
+* [regex101.com](https://regex101.com/library/Yvqkci): for providing the base of the regex used for password pattern.
+* [David Strencsev on stackoverflow](https://stackoverflow.com/questions/9343082/html5-input-pattern-search-for-quote): for showcasing how to search for quotes in regex by using hex notation.
