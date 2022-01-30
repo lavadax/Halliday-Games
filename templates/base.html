@@ -41,13 +41,16 @@
             <li><a href="{{ url_for('get_reviews') }}">Home</a></li>
             <!-- Add search bar & magnifying glass icon -->
             <li><a href="{{ url_for('search') }}">Top Reviews</a></li>
-            <!-- 2 below only when not logged in -->
-            <li><a href="{{ url_for('login') }}">Log In</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            <!-- 3 below only when logged in -->
-            <li><a href="{{ url_for('add_review') }}">Create Review</a></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-            <li><a href="{{ url_for('get_account', user=session['user']) }}">Account</a></li>
+            {% if session.user %}
+                <!-- 3 below only when logged in -->
+                <li><a href="{{ url_for('add_review') }}">Create Review</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a href="{{ url_for('get_account', user=session['user']) }}">Account</a></li>
+            {% else %}
+                <!-- 2 below only when not logged in -->
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
         </ul>
     </header>
     <div class="main-content">
