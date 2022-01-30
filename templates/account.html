@@ -4,4 +4,109 @@
         Hello {{ user }}. Not you? 
         <a href="{{ url_for('logout') }}" class="light-blue-text text-darken-4">Log out here!</a>
     </h3>
+
+    <div class="row">
+        <form class="col s12" method="POST" action="{{ url_for('change_password') }}">
+            <table>
+                <tr>
+                    <td rowspan="2" class="border-right border-bottom border-top">
+                        <h4>Account information</h4>
+                    </td>
+                    <td class="border-top">
+                        Account Name: 
+                    </td>
+                    <td class="border-top">
+                        {{ user }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-bottom">
+                        Member Since: 
+                    </td>
+                    <td class="border-bottom">
+                        TODO ADD MEMBERSHIP START DATE
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="border-right border-bottom">
+                        <h4>Activity Information</h4>
+                    </td>
+                    <td>
+                        Amount of Reviews: 
+                    </td>
+                    <td>
+                        TODO ADD COUNT OF MY REVIEWS QUERY
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-bottom">
+                        Top Reviewed Genres: 
+
+                    </td>
+                    <td class="border-bottom">
+                        TODO ADD AGGREGATED COUNT OF REVIEWS PER GENRE, TOP 3
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="border-right border-bottom">
+                        <h4>Change Password</h4>
+                    </td>
+                    <td>
+                        <label for="check-password" class="tooltipped"
+                        data-tooltip="Must match your current password">
+                        Current Password: </label>
+                    </td>
+                    <td>
+                        <input id="check-password" name="check-password" 
+                        type="password" minlength="5" 
+                        maxlength="15" 
+                        pattern="^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!£%&_=,<>/#~@;:\-\+\*\?\^\$\(\)\[\]\{\}\|\x22\x27\\.]).{8,})$"
+                        title="Must match your current password"
+                        class="validate" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password" class="tooltipped" 
+                        data-tooltip="Must contain at least 
+                        one number, one uppercase and lowercase letter,
+                        one special character, 
+                        and at least 8 or more characters">New Password: </label>
+                    </td>
+                    <td>
+                        <input id="password" name="password" 
+                        type="password" minlength="5" 
+                        maxlength="15" 
+                        pattern="^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!£%&_=,<>/#~@;:\-\+\*\?\^\$\(\)\[\]\{\}\|\x22\x27\\.]).{8,})$"
+                        title="Must contain at least one number, 
+                        one uppercase and lowercase letter,
+                        one special character, 
+                        and at least 8 or more characters"
+                        class="validate" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-bottom">
+                        <label for="password2" class="tooltipped"
+                        data-tooltip="Must match above password">
+                        Repeat Password: 
+                        </label>
+                    </td>
+                    <td class="border-bottom">
+                        <input id="password2" name="password2" 
+                        type="password" minlength="5" 
+                        maxlength="15" 
+                        pattern="^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!£%&_=,<>/#~@;:\-\+\*\?\^\$\(\)\[\]\{\}\|\x22\x27\\.]).{8,})$"
+                        title="Must match above password"
+                        class="validate" required>
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <button type="submit" class="col s6 m4 offset-s3 offset-m4 btn-large black">
+                    Change Password <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
