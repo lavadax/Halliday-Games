@@ -48,12 +48,11 @@ def login():
                 session["user"] = user.lower()
                 flash("Welcome, {}".format(user))
                 return redirect(url_for(
-                    "profile", username=session["user"]))
+                    "get_account", user=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -105,6 +104,8 @@ def add_review():
 
 @app.route("/logout")
 def logout():
+    flash("You've been logged out successfully")
+    session.pop("user")
     return redirect(url_for("login"))
 
 
