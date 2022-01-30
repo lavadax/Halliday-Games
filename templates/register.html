@@ -45,10 +45,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-user-check prefix black-text 
-                        tooltipped" data-tooltip="Must contain at least 
-                        one number, one uppercase and lowercase letter,
-                        one special character, at least 8 or more characters,
-                        and match the above password"></i>
+                        tooltipped" data-tooltip="Must match the above password"></i>
                         <!-- Pattern checks for minimum 1 lowercase, 
                             1 uppercase, 1 number, 1 special character,
                             and at least 8 characters -->
@@ -56,10 +53,7 @@
                             type="password" minlength="5" 
                             maxlength="15" 
                             pattern="^((?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!£%&_=,<>/#~@;:\-\+\*\?\^\$\(\)\[\]\{\}\|\x22\x27\\.]).{8,})$"
-                            title="Must contain at least one number, 
-                            one uppercase and lowercase letter,
-                            one special character, 
-                            and at least 8 or more characters"
+                            title="Must match the above password"
                             class="validate" required>
                         <label for="password2">Repeat Password</label>
                     </div>
