@@ -21,7 +21,7 @@ nav {
 /* Main content */
 
 .main-content {
-    min-height: calc(100vh - 56px - 85px);
+    min-height: calc(100vh - 61px - 85px);
 }
 
 /* H3 box styling override */
@@ -29,6 +29,12 @@ nav {
 h3 {
     margin: 0 0 1.168rem 0;
     padding-top: 1.9rem;
+}
+
+/* H4 box styling override */
+
+h4 {
+    margin: 0 0 0.912rem 0;
 }
 
 /* Search bar */
@@ -143,7 +149,7 @@ footer p {
     /* Main content */
 
     .main-content {
-        min-height: calc(100vh - 64px - 85px);
+        min-height: calc(100vh - 69px - 85px);
     }
 
     /* Cards */
