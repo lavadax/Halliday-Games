@@ -194,7 +194,11 @@ Notable past issues:
 
 * HTTP 405 on registration POST: I was getting HTTP 405 errors when attempting to sign up, as my registration form was set up to log in the user after successful registration, however I kept receiving the 405 due to not setting up a POST method on the login function.
   
-* Unable to load profile: the href for the account button in the nav bar used to be "{{ url_for('get_account', username=session['user']) }}", while I used "user" instead of "username" in other pages, causing issues loading the page.
+* Unable to load profile: The href for the account button in the nav bar used to be "{{ url_for('get_account', username=session['user']) }}", while I used "user" instead of "username" in other pages, causing issues loading the page.
+
+* AttributeError when changing password: While coding in the edit password function, I accidentally replaced a hyphen from my form input with an underscore.  
+Due to this mistake, no value was being passed into the check_password_hash method and it kept returning an attribute error.  
+Unfortunately I was overthinking the complexity of the issue as I had missed the mistake, and this didn't get fixed for about 30 mins until I caught the typo.
 
 
 <!-- TESTING -->
