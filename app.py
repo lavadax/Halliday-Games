@@ -111,11 +111,42 @@ def logout():
 
 @app.route("/get_account/<user>")
 def get_account(user):
-    user = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
     if session["user"]:
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
         return render_template("account.html", user=user)
+    else:
+        # return to login page if user is not logged in
+        flash("Unable to access account details without logging in")
+        return render_template("login")
+
+
+@app.route("/change_password", methods=["GET", "POST"])
+def change_password():
+    if session["user"]:
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        if check_password_hash(
+            user["password"], request.form.get("check-password")):
+            if request.form.get("password") == request.form.get("password2"):
+                new_data = {
+                    "username": user["username"],
+                    "password": generate_password_hash(request.form.get("password"))
+                }
+                mongo.db.users.update_one({"_id": ObjectId(user["_id"])}, {"$set": new_data})
+                flash("Password has successfully been changed")
+                return redirect(url_for("get_account", user=session["user"]))
+            else:
+                flash("New passwords did not match")
+                return redirect(url_for("get_account", user=session["user"]))
+        else:
+            flash("Old password is incorrect")
+            return redirect(url_for("get_account", user=session["user"]))
+    else:
+        # return to login page if user is not logged in
+        flash("Unable to change password without logging in")
+        return render_template("login")
+
 
 
 @app.route("/read_review")
