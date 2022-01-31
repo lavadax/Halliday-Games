@@ -16,7 +16,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="{{ url_for('get_reviews') }}" class="brand-logo">
-                    <img src="static/images/logo.png" alt="Brand Logo" />
+                    <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Brand Logo" />
                 </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
