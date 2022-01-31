@@ -200,6 +200,13 @@ Notable past issues:
 Due to this mistake, no value was being passed into the check_password_hash method and it kept returning an attribute error.  
 Unfortunately I was overthinking the complexity of the issue as I had missed the mistake, and this didn't get fixed for about 30 mins until I caught the typo.
 
+* Body too long: As the html main-content element is calculated to be the entire viewport height, excluding the header and footer height, the calculation didn't work as planned after introducing flash messages.  
+The issue was fixed by overriding the margins applied to the h3 flash messages by Materialize css.  
+
+* Logo not found in review or account: the logo, applied in base.html, would not load when opening a review page, or account details page.  
+As these pages were the only ones that were an extra step removed from the root, the issue was clearly in the relative path used to load the image file.  
+After some googling, the answer was found on (kezunlin.me)[https://kezunlin.me/post/1e37a6/] and the src attribute was adjusted to fix the issue.
+
 
 <!-- TESTING -->
 ## Testing
