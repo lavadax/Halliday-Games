@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3 class="center-align">[REVIEW TITLE]</h3>
-{% endblock %}
+    <div class="row">
+        <h3 class="center-align">{{review.game_title}}</h3>
+        <h4 class="center-align">{{review.review_title}}</h4>
+        <p class="col s10 offset-s1">{{review.review}}</p>
+    </div>
+    {% endblock %}
