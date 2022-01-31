@@ -113,7 +113,7 @@ def logout():
 def get_account(user):
     if session["user"]:
         user = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+            {"username": session["user"]})
         return render_template("account.html", user=user)
     else:
         # return to login page if user is not logged in
@@ -121,11 +121,10 @@ def get_account(user):
         return render_template("login")
 
 
-@app.route("/change_password", methods=["GET", "POST"])
-def change_password():
-    if session["user"]:
-        user = mongo.db.users.find_one(
-            {"username": session["user"]})
+@app.route("/change_password/<user_id>", methods=["GET", "POST"])
+def change_password(user_id):
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if session["user"] == user["username"]:
         if check_password_hash(
             user["password"], request.form.get("check-password")):
             if request.form.get("password") == request.form.get("password2"):

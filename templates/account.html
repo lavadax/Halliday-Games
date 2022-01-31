@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     <h3 class="center-align">
-        Hello {{ user }}. Not you? 
+        Hello {{ user.username }}. Not you? 
         <a href="{{ url_for('logout') }}" class="light-blue-text text-darken-4">Log out here!</a>
     </h3>
 
     <div class="row">
-        <form class="col s12" method="POST" action="{{ url_for('change_password') }}">
+        <form class="col s12" method="POST" action="{{ url_for('change_password', user_id=user._id) }}">
             <table>
                 <tr>
                     <td rowspan="2" class="border-right border-bottom border-top">
@@ -16,7 +16,7 @@
                         Account Name: 
                     </td>
                     <td class="border-top">
-                        {{ user }}
+                        {{ user.username }}
                     </td>
                 </tr>
                 <tr>
