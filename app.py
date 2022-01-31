@@ -149,9 +149,10 @@ def change_password():
 
 
 
-@app.route("/read_review")
-def read_review():
-    return render_template("read_review.html")
+@app.route("/read_review/<review_id>")
+def read_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    return render_template("read_review.html", review=review)
 
 
 if __name__ == "__main__":
