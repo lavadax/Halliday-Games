@@ -265,4 +265,6 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 * [github.com/othneildrew](https://github.com/othneildrew/Best-README-Template): for providing the readme template.
 * [github.com/Code-Institute-Solutions](https://github.com/Code-Institute-Solutions/SampleREADME): for filling in gaps in the readme template.
 * [regex101.com](https://regex101.com/library/Yvqkci): for providing the base of the regex used for password pattern.
-* [David Strencsev on stackoverflow](https://stackoverflow.com/questions/9343082/html5-input-pattern-search-for-quote): for showcasing how to search for quotes in regex by using hex notation.
+* [David Strencsev on stackoverflow](https://stackoverflow.com/questions/9343082/html5-input-pattern-search-for-quote): for showcasing how to search for quotes in regex by using hex notation.  
+* [kezunlin.me](https://kezunlin.me/post/1e37a6/): for showcasing how to use jinja with static image links
+* [Code Institute python miniproject](https://github.com/Code-Institute-Solutions/TaskManagerAuth): For the basics on the user authentication functionality, as well as giving a framework and guide on how to get started.
