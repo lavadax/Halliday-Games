@@ -64,9 +64,13 @@ h4 {
     margin-left: 15px;
 }
 
+textarea {
+    max-width: 100%;
+}
+
 /* Buttons */
 
-button.btn-large {
+button.btn-large, a.btn-large {
     border: 2px solid #b71c1c;
     border-radius: 7px;
 }
