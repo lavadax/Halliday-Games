@@ -49,9 +49,14 @@ def my_reviews(user_id):
 
     
 
-@app.route("/search")
+@app.route("/search", methods=["GET","POST"])
 def search(): 
-    # TODO add query & mongodb index
+    if request.method == "POST":
+        
+        game_title = request.form.get("game_title")
+        reviews = list(mongo.db.reviews.find({"game_title": game_title}).sort("score", -1))
+        return render_template("search.html", reviews=reviews, game_title=game_title)
+
     reviews = list(mongo.db.reviews.find().sort("score", -1))
     return render_template("search.html", reviews=reviews)
 
