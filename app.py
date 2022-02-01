@@ -25,6 +25,29 @@ def get_reviews():
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     return render_template("reviews.html", reviews=reviews)
 
+@app.route("/my_reviews/<user_id>")
+def my_reviews(user_id):
+    try:
+        # Check if a user is logged in
+        if session["user"]:
+
+            # Check if the logged in user matches the user id from the URL variable
+            user = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
+            if session["user"] == user:
+                reviews = list(mongo.db.reviews.find({"created_by": ObjectId(user_id)}))
+                return render_template("reviews.html", reviews=reviews)
+
+            # TODO add & handle 403 forbidden error
+            flash("You're not allowed to look through this user's review list")
+            return redirect(url_for("get_reviews"))
+    except:
+
+        #TODO add & handle 404 not found error
+        flash("You're not logged in so you don't have any reviews")
+        return redirect(url_for("get_reviews"))
+
+
+    
 
 @app.route("/search")
 def search(): 
