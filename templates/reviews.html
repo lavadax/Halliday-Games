@@ -2,7 +2,8 @@
 {% block content %}
     {% block search %}
     {% endblock %}
-    <h3 class="center-align">Latest Reviews</h3>
+    <h3 class="center-align">{% block header %}Latest Reviews{% endblock %}
+    </h3>
     {% if reviews|length > 0 %}
         <div class="row">
             {% for review in reviews %}
