@@ -1,4 +1,52 @@
 {% extends "base.html"%}
 {% block content %}
     <h3 class="center-align">Create a new review</h3>
+    <div class="row">
+        <form action="{{ url_for('add_review') }}" method="POST" class="col s12 m8 offset-m2">
+            <div class="card-panel">
+                <div class="row">
+                    <div class="input-field col s12 m4">
+                        <input type="text" id="game_title" name="game_title" required>
+                        <label for="game_title">Game Title</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input type="text" id="review_title" name="review_title" required>
+                        <label for="review_title">Review Title</label>
+                    </div>
+                    <div class="input-field col s6 m2 offset-s3">
+                        <input type="number" id="score" name="score" 
+                        min="0" max="10"
+                        class="validate" required>
+                        <label for="score">Score</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="review" class="center-align">Game Review: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="review" name="review" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="review_summary" class="center-align">Review Summary: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="review_summary" name="review_summary" required></input>
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="{{ url_for('get_reviews') }}" class="col btn-large black s4 m2 offset-s1 offset-m3">Cancel</a>
+                    <button type="submit" class="col btn-large black s4 m2 offset-s1 offset-m2">Add review</button>
+                </div>
+            </div>
+                
+            </div>
+        </form>
+    </div>
 {% endblock %}
