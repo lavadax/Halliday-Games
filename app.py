@@ -22,14 +22,14 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_reviews")
 def get_reviews():
-    reviews = list(mongo.db.reviews.find())
+    reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/search")
 def search(): 
     # TODO add query & mongodb index
-    reviews = list(mongo.db.reviews.find())
+    reviews = list(mongo.db.reviews.find().sort("score", -1))
     return render_template("search.html", reviews=reviews)
 
 
