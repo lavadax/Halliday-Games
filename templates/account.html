@@ -35,7 +35,7 @@
                         Amount of Reviews: 
                     </td>
                     <td class="border-bottom">
-                        {{ my_reviews }}
+                        {{ my_reviews }} <a href="{{ url_for('my_reviews', user_id=user._id) }}">>> Check them out!</a>
                     </td>
                 </tr>
                 <tr>
