@@ -56,6 +56,7 @@
                 <li><a href="#future-plans">Future Plans</a></li>
                 <li><a href="#open-issues">Open Issues</a></li>
                 <li><a href="#past-issues">Past issues</a></li>
+                <li><a href="#site-changes">Site Changes</a></li>
             </ul>
         </li>
         <li>
@@ -180,6 +181,7 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 ### Future Plans
 
 <!-- TODO Add plans -->
+* Add Genre tags to all reviews and use these to do an aggregate search for top 3 reviewed genres in account information.
 
 ### Open Issues
 
@@ -207,6 +209,12 @@ The issue was fixed by overriding the margins applied to the h3 flash messages b
 As these pages were the only ones that were an extra step removed from the root, the issue was clearly in the relative path used to load the image file.  
 After some googling, the answer was found on (kezunlin.me)[https://kezunlin.me/post/1e37a6/] and the src attribute was adjusted to fix the issue.
 
+
+### Site Changes
+
+* Wireframes erronously didn't include an input field to add a review score in the "create review" page. This is added on the actual site.
+
+* Initial plan was to add genre tags to all the reviews, and to add an aggregate search to show on the account page. however due to time limitations this idea was dropped and is now added in the future plans section as a potential addition post-submission.
 
 <!-- TESTING -->
 ## Testing
