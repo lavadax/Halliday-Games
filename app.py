@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -96,7 +97,8 @@ def register():
             # Add new user to database
             details = {
                 "username": user,
-                "password": generate_password_hash(pass1)
+                "password": generate_password_hash(pass1),
+                "member_since": datetime.today().strftime("%Y-%m-%d")
             }
             mongo.db.users.insert_one(details)
 
@@ -146,6 +148,8 @@ def logout():
 @app.route("/get_account/<user>")
 def get_account(user):
     try:
+        # TODO add top_review and top_genres variable which is a mongodb query using count & aggregate functions 
+        # to pass along amount of reviews by user, and top reviewed genres by user
         # Check if a user is logged in before attempting to get account details
         if session["user"]:
             user = mongo.db.users.find_one(
