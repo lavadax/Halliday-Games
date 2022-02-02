@@ -233,28 +233,30 @@ def login():
 
 @app.route("/logout")
 def logout():
-    try:
 
-        # Check if a user is logged in before attempting to log out
-        if session["user"]:
-            flash("You've been logged out successfully")
-            session.pop("user")
-            return redirect(url_for("login"))
-    except:
+    # Check if a user is logged in before attempting to log out
+    if "user" in session:
 
-        # Redirect user as user can't be logged out before first logging in
-        flash("Unable to log out without logging in")
-        abort(403, description="Page forbidden")
+        flash("You've been logged out successfully")
+        session.pop("user")
+        return redirect(url_for("login"))
+
+    # Redirect user as user can't be logged out before first logging in
+    flash("Unable to log out without logging in")
+    abort(403, description="Page forbidden")
         
     
 
 
 @app.route("/get_account/<user>")
 def get_account(user):
-    try:
 
-        # Check if a user is logged in before attempting to get account details
+    # Check if a user is logged in before attempting to get account details
+    if "user" in session:
+
+        # Check the logged in user is trying to access their own details
         if session["user"] == user:
+
             user = mongo.db.users.find_one(
                 {"username": session["user"]})
             my_reviews = mongo.db.reviews.count_documents({"created_by": ObjectId(user["_id"])})
@@ -264,20 +266,19 @@ def get_account(user):
         flash("Unable to access account details for other accounts")
         abort(403, description="Page forbidden")
 
-    except:
-
-        # Redirect user as account details can't be retrieved before first logging in
-        flash("Unable to access account details without logging in")
-        abort(403, description="Page forbidden")
+    # Redirect user as account details can't be retrieved before first logging in
+    flash("Unable to access account details without logging in")
+    abort(403, description="Page forbidden")
 
 
 @app.route("/change_password/<user_id>", methods=["GET", "POST"])
 def change_password(user_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    try:
 
-        # Check if a user is logged in before attempting to get account details
-        # Also checks if session username of account attempting password change
+    # Check if a user is logged in before attempting to get account details
+    if "user" in session:
+
+        # Check if logged in user is attempting to change their own password
         if session["user"] == user["username"]:
 
             # Add form data in variables
@@ -295,7 +296,7 @@ def change_password(user_id):
                     return redirect(url_for("get_account", user=session["user"]))
 
                 # Check if new passwords match eachother
-                elif new_pass == new_pass_check:
+                if new_pass == new_pass_check:
                     new_data = {
                         "username": user["username"],
                         "password": generate_password_hash(new_pass)
@@ -312,10 +313,13 @@ def change_password(user_id):
             flash("Old password is incorrect")
             return redirect(url_for("get_account", user=session["user"]))
 
-    except:
-        # Return to login page if user is not logged in
-        flash("Unable to change password without logging in")
-        return render_template("login")
+        # Redirect user as password for other accounts can't be changed
+        flash("Unable to access change password for other accounts")
+        abort(403, description="Page forbidden")
+
+    # Redirect user as password can't be changed before first logging in
+    flash("Unable to change password without logging in")
+    abort(403, description="Page forbidden")
 
 
 @app.errorhandler(403)
