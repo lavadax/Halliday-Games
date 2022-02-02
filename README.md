@@ -12,6 +12,8 @@
     <p align="center">
         3rd milestone project for CodeInstitute course. This is mostly focused on Python, Flask and MongoDB.
         <br />
+        This project is meant to simulate a videogame review site, which will give visitors CRUD functionality on accounts and reviews.
+        <br />
         <a href="#"><strong>Explore the docs »</strong></a>
         <br />
         <br />
