@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, render_template, redirect, 
+    Flask, render_template, redirect,
     url_for, request, flash, session, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -25,16 +25,18 @@ def get_reviews():
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     return render_template("reviews.html", reviews=reviews)
 
+
 @app.route("/my_reviews/<user_id>")
 def my_reviews(user_id):
 
     # Check if a user is logged in
     if "user" in session:
 
-        # Check if the logged in user matches the user id from the URL variable
+        # Check if the logged in user matches the user id from the URL
         user = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
         if session["user"] == user:
-            reviews = list(mongo.db.reviews.find({"created_by": session["user"]}))
+            reviews = list(mongo.db.reviews.find(
+                {"created_by": session["user"]}))
             return render_template("reviews.html", reviews=reviews)
 
         flash("You're not allowed to look through this user's review list")
@@ -44,14 +46,13 @@ def my_reviews(user_id):
     abort(403, description="Page forbidden")
 
 
-    
-
-@app.route("/search", methods=["GET","POST"])
-def search(): 
+@app.route("/search", methods=["GET", "POST"])
+def search():
     if request.method == "POST":
-        
+
         game_title = request.form.get("game_title")
-        reviews = list(mongo.db.reviews.find({"game_title": game_title}).sort("score", -1))
+        reviews = list(mongo.db.reviews.find(
+            {"game_title": game_title}).sort("score", -1))
         return render_template("search.html", reviews=reviews)
 
     reviews = list(mongo.db.reviews.find().sort("score", -1))
@@ -65,11 +66,12 @@ def read_review(review_id):
         # Check if a user is logged in
         if "user" in session:
             review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-            return render_template("read_review.html", review=review, user=session["user"])
+            return render_template(
+                "read_review.html", review=review, user=session["user"])
 
         review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
         return render_template("read_review.html", review=review, user="")
-    
+
     flash("Unable to find a review matching this ID")
     abort(404, description="Resource not Found")
 
@@ -95,11 +97,10 @@ def add_review():
             flash("Review has been added successfully")
             return redirect(url_for("get_reviews"))
 
-
         # Redirect user as a review can't be added without logging in
         flash("Unable to add a review without logging in")
         abort(403, description="Page forbidden")
-        
+
     # Check if a user is logged in before attempting to add a review
     if "user" in session:
         return render_template("add_review.html")
@@ -112,7 +113,7 @@ def add_review():
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    
+
     # Check if user is logged in
     if "user" in session:
 
@@ -120,7 +121,7 @@ def edit_review(review_id):
         if session["user"] == review["created_by"]:
 
             if request.method == "POST":
- 
+
                 new_review = {
                     "_id": ObjectId(review_id),
                     "created_by": session["user"],
@@ -131,15 +132,16 @@ def edit_review(review_id):
                     "review": request.form.get("review"),
                     "review_summary": request.form.get("review_summary")
                 }
-                mongo.db.reviews.update_one({"_id": ObjectId(review_id)}, {"$set": new_review})
+                mongo.db.reviews.update_one(
+                    {"_id": ObjectId(review_id)}, {"$set": new_review})
                 flash("Review updated successfully")
                 return redirect(url_for("read_review", review_id=review_id))
 
             return render_template("edit_review.html", review=review)
-                
+
         # Redirect when user is trying to edit wrong review
             flash("Unable to edit another user's review")
-            abort(403, description="Page forbidden") 
+            abort(403, description="Page forbidden")
 
     # Redirect when user is not logged in
     flash("Unable to edit a review before logging in")
@@ -149,20 +151,20 @@ def edit_review(review_id):
 @app.route("/delete_review/<review_id>")
 def delete_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    
+
     # Check if user is logged in
     if "user" in session:
 
         # Check if logged in user created the review
         if session["user"] == review["created_by"]:
- 
+
             mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
             flash("Review deleted successfully")
             return redirect(url_for("get_reviews"))
-        
+
         # Redirect when user is trying to edit wrong review
         flash("Unable to delete another user's review")
-        abort(403, description="Page forbidden") 
+        abort(403, description="Page forbidden")
 
     # Redirect when user is not logged in
     flash("Unable to delete a review before logging in")
@@ -184,7 +186,7 @@ def register():
             if existing_user:
                 flash("Username is unavailable.")
                 return redirect(url_for("register"))
-            
+
             # Check if the passwords match
             pass1 = request.form.get("password")
             pass2 = request.form.get("password2")
@@ -227,15 +229,16 @@ def login():
             existing_user = mongo.db.users.find_one(
                 {"username": user.lower()})
             if existing_user:
-                
+
                 # Ensure hashed password matches user input
                 if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
+                        existing_user["password"],
+                        request.form.get("password")):
                     session["user"] = user.lower()
                     flash("Welcome, {}".format(user))
                     return redirect(url_for(
                         "get_account", user=session["user"]))
-                
+
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
@@ -243,8 +246,6 @@ def login():
             # Username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
-        
-        
 
         # Return for GET method
         return render_template("login.html")
@@ -267,8 +268,6 @@ def logout():
     # Redirect user as user can't be logged out before first logging in
     flash("Unable to log out without logging in")
     abort(403, description="Page forbidden")
-        
-    
 
 
 @app.route("/get_account/<user>")
@@ -282,14 +281,17 @@ def get_account(user):
 
             user = mongo.db.users.find_one(
                 {"username": session["user"]})
-            my_reviews = mongo.db.reviews.count_documents({"created_by": session["user"]})
-            return render_template("account.html", user=user, my_reviews=my_reviews)
+            my_reviews = mongo.db.reviews.count_documents(
+                {"created_by": session["user"]})
+            return render_template(
+                "account.html", user=user, my_reviews=my_reviews)
 
         # Redirect user as account details for other accounts can't be viewed
         flash("Unable to access account details for other accounts")
         abort(403, description="Page forbidden")
 
-    # Redirect user as account details can't be retrieved before first logging in
+    # Redirect user as account details
+    # can't be retrieved before first logging in
     flash("Unable to access account details without logging in")
     abort(403, description="Page forbidden")
 
@@ -311,12 +313,13 @@ def change_password(user_id):
 
             # Check if password matches current account password
             if check_password_hash(
-                user["password"], old_pass):
+                    user["password"], old_pass):
 
                 # Check if new password matches old password
                 if old_pass == new_pass:
                     flash("New password can't be the same as old password")
-                    return redirect(url_for("get_account", user=session["user"]))
+                    return redirect(url_for(
+                        "get_account", user=session["user"]))
 
                 # Check if new passwords match eachother
                 if new_pass == new_pass_check:
@@ -324,10 +327,12 @@ def change_password(user_id):
                         "username": user["username"],
                         "password": generate_password_hash(new_pass)
                     }
-                    mongo.db.users.update_one({"_id": ObjectId(user["_id"])}, {"$set": new_data})
+                    mongo.db.users.update_one(
+                        {"_id": ObjectId(user["_id"])}, {"$set": new_data})
                     flash("Password has successfully been changed")
-                    return redirect(url_for("get_account", user=session["user"]))
-                
+                    return redirect(url_for(
+                        "get_account", user=session["user"]))
+
                 # If passwords don't match
                 flash("New passwords did not match")
                 return redirect(url_for("get_account", user=session["user"]))
@@ -347,24 +352,24 @@ def change_password(user_id):
 
 @app.route("/delete_account/<user_id>")
 def delete_account(user_id):
-    
+
     # Check if user is logged in
     if "user" in session:
 
         user = mongo.db.users.find_one({"username": session["user"]})
         # Check if logged in user created the review
         if user["_id"] == ObjectId(user_id):
-            
+
             mongo.db.reviews.delete_many({"created_by": session["user"]})
             mongo.db.users.delete_one({"_id": ObjectId(user_id)})
             session.pop("user")
             flash("Account and reviews deleted successfully")
             return redirect(url_for("get_reviews"))
-        
+
         # Redirect when user is trying to edit wrong account
         # flash("Unable to delete another user's account")
         flash(user_id)
-        abort(403, description="Page forbidden") 
+        abort(403, description="Page forbidden")
 
     # Redirect when user is not logged in
     flash("Unable to delete an account before logging in")
@@ -384,4 +389,4 @@ def page_not_found(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True) 
+            debug=True)
