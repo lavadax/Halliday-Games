@@ -185,8 +185,18 @@ After some googling, the answer was found on (kezunlin.me)[https://kezunlin.me/p
 ## Testing
 
 ### Validation
-<!-- TODO Add code validation -->
 
+In order to validate my code, I started with putting my HTML source code through the [markup validator](https://validator.w3.org).  
+All files came back clean, aside from create_review, which had 2 stray closing tags.  
+  
+After HTML, I ran my CSS code trough [jigsaw](https://jigsaw.w3.org/css-validator/), which came back clean as well.  
+  
+Next up was javascript. This was validated with [jshint](https://jshint.com), and since this just served as initialization for Materialize components, this came back clean as well.  
+  
+Lastly was python. Unfortunately, the [pap8online](http://pep8online.com) validator found quite a few issues, most of them extra whitespaces and lines that were too long.  
+After going through the list of issues, eventually it came back clean as well.  
+
+For more information, and screenshots of the validation, please check [this file](https://github.com/lavadax/Halliday-Games/blob/master/validation.md)
 
 ### Testing User Stories
 
