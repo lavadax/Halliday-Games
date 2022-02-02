@@ -34,7 +34,7 @@ def my_reviews(user_id):
         # Check if the logged in user matches the user id from the URL variable
         user = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
         if session["user"] == user:
-            reviews = list(mongo.db.reviews.find({"created_by": ObjectId(user_id)}))
+            reviews = list(mongo.db.reviews.find({"created_by": session["user"]}))
             return render_template("reviews.html", reviews=reviews)
 
         flash("You're not allowed to look through this user's review list")
@@ -282,7 +282,7 @@ def get_account(user):
 
             user = mongo.db.users.find_one(
                 {"username": session["user"]})
-            my_reviews = mongo.db.reviews.count_documents({"created_by": ObjectId(user["_id"])})
+            my_reviews = mongo.db.reviews.count_documents({"created_by": session["user"]})
             return render_template("account.html", user=user, my_reviews=my_reviews)
 
         # Redirect user as account details for other accounts can't be viewed
