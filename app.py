@@ -91,9 +91,9 @@ def add_review():
                 "review": request.form.get("review"),
                 "review_summary": request.form.get("review_summary")
             }
-            review = mongo.db.reviews.insert_one(review_details)
+            mongo.db.reviews.insert_one(review_details)
             flash("Review has been added successfully")
-            return redirect(url_for("read_review", review_id=review["_id"]))
+            return redirect(url_for("get_reviews"))
 
 
         # Redirect user as a review can't be added without logging in
@@ -357,6 +357,7 @@ def delete_account(user_id):
             
             mongo.db.reviews.delete_many({"created_by": session["user"]})
             mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+            session.pop("user")
             flash("Account and reviews deleted successfully")
             return redirect(url_for("get_reviews"))
         
