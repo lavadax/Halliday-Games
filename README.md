@@ -183,6 +183,10 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 <!-- TODO Add plans -->
 * Add Genre tags to all reviews and use these to do an aggregate search for top 3 reviewed genres in account information.
 
+* Add images to review cards in the home page and search review page, as well as the read review page.
+
+* Add more styling to review page, as it's currently being processed as a string without any newline/linebreak elements.
+
 ### Open Issues
 
 See the [open issues](https://github.com/lavadax/Halliday-Games/issues) for a list of proposed features (and known issues).
