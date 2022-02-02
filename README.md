@@ -244,3 +244,5 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 * [Code Institute python miniproject](https://github.com/Code-Institute-Solutions/TaskManagerAuth): For the basics on the user authentication functionality, as well as giving a framework and guide on how to get started.
 * [diegueus9 on Stackoverflow](https://stackoverflow.com/questions/32490629/getting-todays-date-in-yyyy-mm-dd-in-python): for showcasing how to get datetime in the correct format in python.
 * [flask.palletsprojects.com](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/): for giving instructions on how to throw and handle http errors in flask.
+* [ign.com](https://www.ign.com): for providing a few sample reviews.
+* [gamespot.com](www.gamespot.com): for providing a few sample reviews.
