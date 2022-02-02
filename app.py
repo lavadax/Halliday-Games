@@ -61,8 +61,13 @@ def search():
 
 @app.route("/read_review/<review_id>")
 def read_review(review_id):
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    return render_template("read_review.html", review=review)
+    if mongo.db.reviews.count_documents({"_id": ObjectId(review_id)}) == 1:
+
+        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+        return render_template("read_review.html", review=review)
+    
+    flash("Unable to find a review matching this ID")
+    abort(404, description="Resource not Found")
 
 
 @app.route("/add_review", methods=["GET", "POST"])
