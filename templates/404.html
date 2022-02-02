@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="center-align">Page Not Found</h3>
+<div class="row">
+    <div class="col s12 center-align">
+        <h5>Oops! It appears the page you're looking for doesn't exist.</h5>
+        <h5>Please use the nav bar to go to a different page, or <a href="{{ url_for('get_reviews') }}">click here</a> to go back to the home page.</h5>
+        <h5>If you believe the page you're trying to access was lost by mistake, please contact us through any of our social media link in the bottom of the page.</h5>
+    </div>
+</div>
+{% endblock %}
