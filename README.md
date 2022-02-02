@@ -94,7 +94,7 @@ I've added a few screenshots of the live page [here](https://github.com/lavadax/
 
 <!-- DEPLOYMENT -->
 ## Deployment
-<!-- TODO Add instructions on heroku deployment -->
+
 ### Heroku
 
 The project was deployed to Heroku using the following steps...
@@ -192,9 +192,29 @@ After some googling, the answer was found on (kezunlin.me)[https://kezunlin.me/p
 <!-- TODO Add user stories testing -->
 #### First Time Visitor goals  
   
+  * As a new user, I want to easily understand the purpose of the site.  
+    
+    In order to make sure the purpose of the site is clear when opening the page, the home page includes a simple introductory text which explains the purpose, and mentions some options for the user.  
+      
+  * As a new user, I want to be able to easily navigate the site and access the content it provides.  
+    
+    The site has a few pages, which are all linked in the nav bar (which is responsive on all screens), most of which are also linked on various pages in order to highlight these options more to the user.  
+    Nav elements linking to unavailable resources (depending on if the user is logged in or not) are hidden from the user, so as to not cause confusion.  
+
+  * As a new user, I want to easily find where to sign up an account.  
+  
+    As part of the introductory message on the home page, the registration link is highlighted, which is also included in the nav bar.
 
 #### Returning Visitor Goals
 
+  * As a returning user, I want to easily log into my account.
+
+    The user's account information is stored in session cookies so the user will stay logged in unless they manually log out.  
+    Once logged out, the user simply has to go back to the log in page which is in the nav bar, and enter their username and password.
+
+  * As a returning user, I want to be able to easily navigate the site and submit new reviews  
+
+  Once logged in, the user can navigate to the create review page in the nav bar, and easily start filling out a new review.  
 
 ### Functional Testing
 <!-- TODO Add functional testing -->
