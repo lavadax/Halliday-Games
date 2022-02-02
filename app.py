@@ -1,7 +1,7 @@
 import os
 from flask import (
     Flask, render_template, redirect, 
-    url_for, request, flash, session)
+    url_for, request, flash, session, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -37,14 +37,12 @@ def my_reviews(user_id):
                 reviews = list(mongo.db.reviews.find({"created_by": ObjectId(user_id)}))
                 return render_template("reviews.html", reviews=reviews)
 
-            # TODO add & handle 403 forbidden error
             flash("You're not allowed to look through this user's review list")
-            return redirect(url_for("get_reviews"))
+            abort(403, description="Page forbidden")
     except:
 
-        #TODO add & handle 404 not found error
         flash("You're not logged in so you don't have any reviews")
-        return redirect(url_for("get_reviews"))
+        abort(404, description="Resource not found")
 
 
     
@@ -90,9 +88,8 @@ def add_review():
 
         except:
             # Redirect user as a review can't be added without logging in
-            # TODO replace with appropriate error handling (404 or 405)
             flash("Unable to add a review without logging in")
-            return redirect(url_for("login"))
+            abort(403, description="Page forbidden")
         
     try:
         # Check if a user is logged in before attempting to add a review
@@ -100,9 +97,8 @@ def add_review():
             return render_template("add_review.html")
     except:
         # Redirect user as a review can't be added without logging in
-        # TODO replace with appropriate error handling (404 or 405)
         flash("Unable to add a review without logging in")
-        return redirect(url_for("login"))
+        abort(403, description="Page forbidden")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -199,9 +195,8 @@ def logout():
             return redirect(url_for("login"))
     except:
         # Redirect user as user can't be logged out before first logging in
-        # TODO replace with appropriate error handling (404 or 405)
         flash("Unable to log out without logging in")
-        return redirect(url_for("login"))
+        abort(403, description="Page forbidden")
         
     
 
@@ -220,9 +215,8 @@ def get_account(user):
 
     except:
         # Redirect user as account details can't be retrieved before first logging in
-        # TODO replace with appropriate error handling (404 or 405)
         flash("Unable to access account details without logging in")
-        return redirect(url_for("login"))
+        abort(403, description="Page forbidden")
 
 
 @app.route("/change_password/<user_id>", methods=["GET", "POST"])
@@ -271,6 +265,15 @@ def change_password(user_id):
         flash("Unable to change password without logging in")
         return render_template("login")
 
+
+@app.errorhandler(403)
+def page_forbidden(e):
+    return render_template("403.html"), 403
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":
