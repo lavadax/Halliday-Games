@@ -4,7 +4,9 @@
     </a>
 </p>
 
-# HTML Validation
+# Code Validation
+
+## HTML
 
 Home page, no issues:  
   
@@ -35,19 +37,19 @@ Account page, no issues:
   
 ![account](https://github.com/lavadax/Halliday-Games/blob/master/documentation/validation/account.png)  
 
-# CSS validation
+## CSS
   
 CSS file, no issues:  
   
 ![css](https://github.com/lavadax/Halliday-Games/blob/master/documentation/validation/css.png)  
   
-# JS validation
+## JS
   
 JS file, no issues:  
   
 ![js](https://github.com/lavadax/Halliday-Games/blob/master/documentation/validation/js.png)  
   
-# Python validation  
+## Python
   
 Python file, quite a few trailing whitespace and line too long issues:  
   
