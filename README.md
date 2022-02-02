@@ -40,9 +40,7 @@
         <li>
             <a href="#deployment">Deployment</a>
             <ul>
-                <li><a href="#github-pages">Github Pages</a></li>
-                <li><a href="#forking-the-github-repository">Forking the GitHub Repository</a></li>
-                <li><a href="#making-a-local-clone">Making a Local Clone</a></li>
+                <li><a href="#heroku">Heroku</a></li>
             </ul>
         </li>
         <li>
@@ -88,7 +86,6 @@ Below you can see a few screenshots of the finished project.
 
 ### Built With
 
-<!-- TODO Add/remove software/pages used -->
 * [Gitpod](https://www.gitpod.io/) / [Gitpod Chrome extension](https://chrome.google.com/webstore/detail/gitpod-dev-environments-i/dodmmooeoklaejobgleioelladacbeki) - Used to develop the site and push the project to Github.
 * [GitHub](https://github.com) - Used for version control.
 * [Whimsical](https://whimsical.com/) - Used to set up the wireframes at the start of the dev cycle.  
@@ -100,52 +97,18 @@ Below you can see a few screenshots of the finished project.
 <!-- DEPLOYMENT -->
 ## Deployment
 <!-- TODO Add instructions on heroku deployment -->
-### GitHub Pages
+### Heroku
 
-The project was deployed to GitHub Pages using the following steps...
+The project was deployed to Heroku using the following steps...
 
-1. Log in to [GitHub](https://github.com/) and locate the GitHub Repository.
-2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
-3. On the left hand side, click the "Pages" section.
-4. Under "Source", click the dropdown called "None" and select "Master Branch".
-5. Click "Save".
-6. The page will automatically refresh.
-7. Locate the now published site link in the Green box on the top part of the page.
-
-### Forking the GitHub Repository
-
-By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
-
-1. Log in to [GitHub](https://github.com/) and locate the GitHub Repository.
-2. At the top right of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
-3. You should now have a copy of the original repository in your GitHub account.
-
-### Making a Local Clone
-
-1. Log in to [GitHub](https://github.com/) and locate the GitHub Repository.
-2. Under the repository name, click "Clone or download".
-3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
-4. Open Git Bash
-5. Change the current working directory to the location where you want the cloned directory to be made.
-6. Type `git clone`, and then paste the URL you copied in Step 3.
-
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-```
-
-7. Press Enter. Your local clone will be created.
-
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-> Cloning into `CI-Clone`...
-> remote: Counting objects: 10, done.
-> remote: Compressing objects: 100% (8/8), done.
-> remove: Total 10 (delta 1), reused 10 (delta 1)
-> Unpacking objects: 100% (10/10), done.
-```
-
-Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
-
+1. Install the required dependencies in your repository, and save them in requirements.txt by typing "pip3 freeze --local > requirements.txt".
+2. Create a Procfile by typing "echo web: python app.py > Procfile" so Heroku knows what file to run.
+3. Log into heroku and create a new app.
+4. Give your app a unique name and select the applicaple region.
+5. Go to the "Deploy" tab, and select your preferred deployment method. For this project, I used automatic deployment from github.
+6. After selecting automatic deployment, enter the name of your github repository, select it from the menu when it is found, and clock connect.
+7. Navigate to the "Settings" tab, click "Reveal Config Vars", and apply the same variables as are in your env.py file (the port and IP the project will run on, the mongo dbname and uri to connect to mongodb, and the secret key to run the flask app)
+8. Now return to the "Deploy tab, scroll down, and enable automatic deployment.
 
 
 <!-- USAGE EXAMPLES -->
@@ -182,7 +145,6 @@ All wireframes are in a single file and can be found [here](https://github.com/l
 
 ### Future Plans
 
-<!-- TODO Add plans -->
 * Add Genre tags to all reviews and use these to do an aggregate search for top 3 reviewed genres in account information.
 
 * Add images to review cards in the home page and search review page, as well as the read review page.
@@ -198,7 +160,6 @@ See the [open issues](https://github.com/lavadax/Halliday-Games/issues) for a li
 See the [closed issues](https://github.com/lavadax/Halliday-Games/issues?q=is%3Aissue+is%3Aclosed) for a list of the past issues.
 
 Notable past issues:  
-<!-- TODO Add major bugs encountered during dev process -->
 
 * HTTP 405 on registration POST: I was getting HTTP 405 errors when attempting to sign up, as my registration form was set up to log in the user after successful registration, however I kept receiving the 405 due to not setting up a POST method on the login function.
   
@@ -275,7 +236,6 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-<!-- TODO Add acknowledgements -->
 * [github.com/othneildrew](https://github.com/othneildrew/Best-README-Template): for providing the readme template.
 * [github.com/Code-Institute-Solutions](https://github.com/Code-Institute-Solutions/SampleREADME): for filling in gaps in the readme template.
 * [regex101.com](https://regex101.com/library/Yvqkci): for providing the base of the regex used for password pattern.
