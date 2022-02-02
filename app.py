@@ -41,8 +41,8 @@ def my_reviews(user_id):
             abort(403, description="Page forbidden")
     except:
 
-        flash("You're not logged in so you don't have any reviews")
-        abort(404, description="Resource not found")
+        flash("You're not allowed to look through this user's review list")
+        abort(403, description="Page forbidden")
 
 
     
