@@ -2,8 +2,17 @@
 {% block content %}
     {% block search %}
     {% endblock %}
-    <h3 class="center-align">{% block header %}Latest Reviews{% endblock %}
-    </h3>
+    {% block header %}
+        <h3 class="center-align">Latest Reviews</h3>
+        {% if not session.user %}
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h5>Welcome to Halliday Games! You'll find a variety of reviews for video games, have a look around to see if anything catches your eye.</h5>
+                    <h5>If you'd like to be an active member on the community, feel free to <a href="{{ url_for('register') }}">register an account</a> so you can start adding your own reviews to share with the world!</h5>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
     {% if reviews|length > 0 %}
         <div class="row">
             {% for review in reviews %}
