@@ -28,6 +28,7 @@ def get_reviews():
 @app.route("/my_reviews/<user_id>")
 def my_reviews(user_id):
     try:
+
         # Check if a user is logged in
         if session["user"]:
 
@@ -62,9 +63,16 @@ def search():
 @app.route("/read_review/<review_id>")
 def read_review(review_id):
     if mongo.db.reviews.count_documents({"_id": ObjectId(review_id)}) == 1:
+        try:
 
-        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-        return render_template("read_review.html", review=review)
+            # Check if a user is logged in
+            if session["user"]:
+                review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+                return render_template("read_review.html", review=review, user=session["user"])
+
+        except:
+            review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+            return render_template("read_review.html", review=review, user="")
     
     flash("Unable to find a review matching this ID")
     abort(404, description="Resource not Found")
@@ -74,12 +82,13 @@ def read_review(review_id):
 def add_review():
     if request.method == "POST":
         try:
+
             # Check of a user is logged in before attempting to add a review
             if session["user"]:
+
                 # Add review to DB
-                user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
                 review_details = {
-                    "created_by": user_id,
+                    "created_by": session["user"],
                     "review_date": datetime.today().strftime("%Y-%m-%d"),
                     "game_title": request.form.get("game_title"),
                     "review_title": request.form.get("review_title"),
@@ -92,17 +101,69 @@ def add_review():
                 return redirect(url_for("read_review", review_id=review["_id"]))
 
         except:
+
             # Redirect user as a review can't be added without logging in
             flash("Unable to add a review without logging in")
             abort(403, description="Page forbidden")
         
     try:
+
         # Check if a user is logged in before attempting to add a review
         if session["user"]:
             return render_template("add_review.html")
     except:
+
         # Redirect user as a review can't be added without logging in
         flash("Unable to add a review without logging in")
+        abort(403, description="Page forbidden")
+
+
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    if request.method == "POST":
+        try:
+
+            # Check if user is logged in
+            if session["user"] == review["created_by"]: 
+                new_review = {
+                    "_id": ObjectId(review_id),
+                    "created_by": session["user"],
+                    "review_date": review["review_date"],
+                    "game_title": request.form.get("game_title"),
+                    "review_title": request.form.get("review_title"),
+                    "score": request.form.get("score"),
+                    "review": request.form.get("review"),
+                    "review_summary": request.form.get("review_summary")
+                }
+                mongo.db.reviews.update_one({"_id": ObjectId(review_id)}, {"$set": new_review})
+                flash("Review updated successfully")
+                return redirect(url_for("read_review", review_id=review_id))
+
+            # Redirect when user is trying to edit wrong review
+            flash("Unable to edit another user's review")
+            abort(403, description="Page forbidden")
+
+        except:
+
+            # Redirect when user is not logged in
+            flash("Unable to edit a review before logging in")
+            abort(403, description="Page forbidden")
+
+    try:
+        
+        # Check if user is logged in
+        if session["user"] == review["created_by"]: 
+            return render_template("edit_review.html", review=review)
+
+        # Redirect when user is trying to edit wrong review
+        flash("Unable to edit another user's review")
+        abort(403, description="Page forbidden")
+
+    except:
+
+        # Redirect when user is not logged in
+        flash("Unable to edit a review before logging in")
         abort(403, description="Page forbidden")
 
 
@@ -153,6 +214,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     # Check if a user isn't logged in already
     if "user" not in session:
 
@@ -193,12 +255,14 @@ def login():
 @app.route("/logout")
 def logout():
     try:
+
         # Check if a user is logged in before attempting to log out
         if session["user"]:
             flash("You've been logged out successfully")
             session.pop("user")
             return redirect(url_for("login"))
     except:
+
         # Redirect user as user can't be logged out before first logging in
         flash("Unable to log out without logging in")
         abort(403, description="Page forbidden")
@@ -209,8 +273,7 @@ def logout():
 @app.route("/get_account/<user>")
 def get_account(user):
     try:
-        # TODO add top_review and top_genres variable which is a mongodb query using count & aggregate functions 
-        # to pass along amount of reviews by user, and top reviewed genres by user
+
         # Check if a user is logged in before attempting to get account details
         if session["user"] == user:
             user = mongo.db.users.find_one(
@@ -223,6 +286,7 @@ def get_account(user):
         abort(403, description="Page forbidden")
 
     except:
+
         # Redirect user as account details can't be retrieved before first logging in
         flash("Unable to access account details without logging in")
         abort(403, description="Page forbidden")
