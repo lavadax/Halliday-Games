@@ -244,6 +244,8 @@ This is the list of browsers that I tested on:
 [Google Chrome](https://www.google.com/chrome)  
 [Microsoft Edge](www.microsoft.com/edge)  
 [Brave](https://brave.com)  
+  
+More in-depth information about accessibility testing can be found [here.](https://github.com/lavadax/Halliday-Games/blob/master/accessibility.md)
 
 <!-- CONTRIBUTING -->
 ## Contributing
