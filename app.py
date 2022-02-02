@@ -146,6 +146,29 @@ def edit_review(review_id):
     abort(403, description="Page forbidden")
 
 
+@app.route("/delete_review/<review_id>")
+def delete_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    
+    # Check if user is logged in
+    if "user" in session:
+
+        # Check if logged in user created the review
+        if session["user"] == review["created_by"]:
+ 
+            mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+            flash("Review deleted successfully")
+            return redirect(url_for("get_reviews"))
+        
+        # Redirect when user is trying to edit wrong review
+        flash("Unable to delete another user's review")
+        abort(403, description="Page forbidden") 
+
+    # Redirect when user is not logged in
+    flash("Unable to delete a review before logging in")
+    abort(403, description="Page forbidden")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
