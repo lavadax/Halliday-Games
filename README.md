@@ -224,7 +224,7 @@ For more information, and screenshots of the validation, please check [this file
 
   * As a returning user, I want to be able to easily navigate the site and submit new reviews  
 
-  Once logged in, the user can navigate to the create review page in the nav bar, and easily start filling out a new review.  
+    Once logged in, the user can navigate to the create review page in the nav bar, and easily start filling out a new review.  
 
 ### Functional Testing
   
