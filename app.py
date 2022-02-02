@@ -112,11 +112,15 @@ def add_review():
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    if request.method == "POST":
-        try:
+    
+    # Check if user is logged in
+    if "user" in session:
 
-            # Check if user is logged in
-            if session["user"] == review["created_by"]: 
+        # Check if logged in user created the review
+        if session["user"] == review["created_by"]:
+
+            if request.method == "POST":
+ 
                 new_review = {
                     "_id": ObjectId(review_id),
                     "created_by": session["user"],
@@ -131,31 +135,15 @@ def edit_review(review_id):
                 flash("Review updated successfully")
                 return redirect(url_for("read_review", review_id=review_id))
 
-            # Redirect when user is trying to edit wrong review
-            flash("Unable to edit another user's review")
-            abort(403, description="Page forbidden")
-
-        except:
-
-            # Redirect when user is not logged in
-            flash("Unable to edit a review before logging in")
-            abort(403, description="Page forbidden")
-
-    try:
-        
-        # Check if user is logged in
-        if session["user"] == review["created_by"]: 
             return render_template("edit_review.html", review=review)
-
+                
         # Redirect when user is trying to edit wrong review
-        flash("Unable to edit another user's review")
-        abort(403, description="Page forbidden")
+            flash("Unable to edit another user's review")
+            abort(403, description="Page forbidden") 
 
-    except:
-
-        # Redirect when user is not logged in
-        flash("Unable to edit a review before logging in")
-        abort(403, description="Page forbidden")
+    # Redirect when user is not logged in
+    flash("Unable to edit a review before logging in")
+    abort(403, description="Page forbidden")
 
 
 @app.route("/register", methods=["GET", "POST"])
