@@ -193,7 +193,7 @@ After HTML, I ran my CSS code trough [jigsaw](https://jigsaw.w3.org/css-validato
   
 Next up was javascript. This was validated with [jshint](https://jshint.com), and since this just served as initialization for Materialize components, this came back clean as well.  
   
-Lastly was python. Unfortunately, the [pap8online](http://pep8online.com) validator found quite a few issues, most of them extra whitespaces and lines that were too long.  
+Lastly was python. Unfortunately, the [pep8online](http://pep8online.com) validator found quite a few issues, most of them extra whitespaces and lines that were too long.  
 After going through the list of issues, eventually it came back clean as well.  
 
 For more information, and screenshots of the validation, please check [this file](https://github.com/lavadax/Halliday-Games/blob/master/validation.md)
@@ -230,8 +230,20 @@ For more information, and screenshots of the validation, please check [this file
 <!-- TODO Add functional testing -->
 
 ### Accessibility Testing
-<!-- TODO Add accessibility testing -->
-
+  
+In order to test accessibility, I first put my site through the [wave](https://wave.webaim.org) evaluation tool to test web accessibility.  
+The only issue that came up here, was an empty link in the mobile hamburger menu, however this was not a big concern.  
+  
+Next was responsiveness testing, which was done through [ami.responsivedesign.is](http://ami.responsivedesign.is/#).  
+Here everything looked fine as well, so I could proceed with the next step.  
+  
+Lastly I just had to test browser support on various browsers.  
+This is the list of browsers that I tested on:  
+[Opera](https://www.opera.com)  
+[Opera GX](https://www.opera.com/gx)  
+[Google Chrome](https://www.google.com/chrome)  
+[Microsoft Edge](www.microsoft.com/edge)  
+[Brave](https://brave.com)  
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -273,4 +285,10 @@ Project Link: [Halliday Games](https://halliday-games.herokuapp.com)
 * [diegueus9 on Stackoverflow](https://stackoverflow.com/questions/32490629/getting-todays-date-in-yyyy-mm-dd-in-python): for showcasing how to get datetime in the correct format in python.
 * [flask.palletsprojects.com](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/): for giving instructions on how to throw and handle http errors in flask.
 * [ign.com](https://www.ign.com): for providing a few sample reviews.
-* [gamespot.com](www.gamespot.com): for providing a few sample reviews.
+* [gamespot.com](www.gamespot.com): for providing a few sample reviews.  
+* [validator.w3.org](https://validator.w3.org): for validating html files.  
+* [jigsaw.w3.org](https://jigsaw.w3.org/css-validator/): for validating css files.  
+* [jshint](https://jshint.com): for validating js files.  
+* [pep8online](http://pep8online.com): for validating py files.  
+* [wave accessibility test](https://wave.webaim.org/): for web accessibility testing.  
+* [ami.responsivedesign.is](http://ami.responsivedesign.is/#): for responsive design testing.  
