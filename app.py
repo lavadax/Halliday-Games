@@ -53,7 +53,7 @@ def search():
         
         game_title = request.form.get("game_title")
         reviews = list(mongo.db.reviews.find({"game_title": game_title}).sort("score", -1))
-        return render_template("search.html", reviews=reviews, game_title=game_title)
+        return render_template("search.html", reviews=reviews)
 
     reviews = list(mongo.db.reviews.find().sort("score", -1))
     return render_template("search.html", reviews=reviews)
