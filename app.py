@@ -27,23 +27,21 @@ def get_reviews():
 
 @app.route("/my_reviews/<user_id>")
 def my_reviews(user_id):
-    try:
 
-        # Check if a user is logged in
-        if session["user"]:
+    # Check if a user is logged in
+    if "user" in session:
 
-            # Check if the logged in user matches the user id from the URL variable
-            user = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
-            if session["user"] == user:
-                reviews = list(mongo.db.reviews.find({"created_by": ObjectId(user_id)}))
-                return render_template("reviews.html", reviews=reviews)
-
-            flash("You're not allowed to look through this user's review list")
-            abort(403, description="Page forbidden")
-    except:
+        # Check if the logged in user matches the user id from the URL variable
+        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})["username"]
+        if session["user"] == user:
+            reviews = list(mongo.db.reviews.find({"created_by": ObjectId(user_id)}))
+            return render_template("reviews.html", reviews=reviews)
 
         flash("You're not allowed to look through this user's review list")
         abort(403, description="Page forbidden")
+
+    flash("You're not allowed to look through this user's review list")
+    abort(403, description="Page forbidden")
 
 
     
@@ -63,16 +61,14 @@ def search():
 @app.route("/read_review/<review_id>")
 def read_review(review_id):
     if mongo.db.reviews.count_documents({"_id": ObjectId(review_id)}) == 1:
-        try:
 
-            # Check if a user is logged in
-            if session["user"]:
-                review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-                return render_template("read_review.html", review=review, user=session["user"])
-
-        except:
+        # Check if a user is logged in
+        if "user" in session:
             review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-            return render_template("read_review.html", review=review, user="")
+            return render_template("read_review.html", review=review, user=session["user"])
+
+        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+        return render_template("read_review.html", review=review, user="")
     
     flash("Unable to find a review matching this ID")
     abort(404, description="Resource not Found")
@@ -81,41 +77,36 @@ def read_review(review_id):
 @app.route("/add_review", methods=["GET", "POST"])
 def add_review():
     if request.method == "POST":
-        try:
 
-            # Check of a user is logged in before attempting to add a review
-            if session["user"]:
+        # Check of a user is logged in before attempting to add a review
+        if "user" in session:
 
-                # Add review to DB
-                review_details = {
-                    "created_by": session["user"],
-                    "review_date": datetime.today().strftime("%Y-%m-%d"),
-                    "game_title": request.form.get("game_title"),
-                    "review_title": request.form.get("review_title"),
-                    "score": request.form.get("score"),
-                    "review": request.form.get("review"),
-                    "review_summary": request.form.get("review_summary")
-                }
-                review = mongo.db.reviews.insert_one(review_details)
-                flash("Review has been added successfully")
-                return redirect(url_for("read_review", review_id=review["_id"]))
+            # Add review to DB
+            review_details = {
+                "created_by": session["user"],
+                "review_date": datetime.today().strftime("%Y-%m-%d"),
+                "game_title": request.form.get("game_title"),
+                "review_title": request.form.get("review_title"),
+                "score": request.form.get("score"),
+                "review": request.form.get("review"),
+                "review_summary": request.form.get("review_summary")
+            }
+            review = mongo.db.reviews.insert_one(review_details)
+            flash("Review has been added successfully")
+            return redirect(url_for("read_review", review_id=review["_id"]))
 
-        except:
-
-            # Redirect user as a review can't be added without logging in
-            flash("Unable to add a review without logging in")
-            abort(403, description="Page forbidden")
-        
-    try:
-
-        # Check if a user is logged in before attempting to add a review
-        if session["user"]:
-            return render_template("add_review.html")
-    except:
 
         # Redirect user as a review can't be added without logging in
         flash("Unable to add a review without logging in")
         abort(403, description="Page forbidden")
+        
+    # Check if a user is logged in before attempting to add a review
+    if "user" in session:
+        return render_template("add_review.html")
+
+    # Redirect user as a review can't be added without logging in
+    flash("Unable to add a review without logging in")
+    abort(403, description="Page forbidden")
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
