@@ -80,9 +80,7 @@
 <!-- ABOUT THE PROJECT-->
 ## About The Project  
 
-Below you can see a few screenshots of the finished project.  
-  
-<!-- TODO Add screenshots of the live site -->
+I've added a few screenshots of the live page [here](https://github.com/lavadax/Halliday-Games/blob/master/about.md)
 
 ### Built With
 
