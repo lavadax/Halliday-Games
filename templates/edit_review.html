@@ -41,8 +41,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="{{ url_for('get_reviews') }}" class="col btn-large black s4 m2 offset-s1 offset-m3">Cancel</a>
-                    <button type="submit" class="col btn-large black s4 m2 offset-s1 offset-m2">Edit review</button>
+                    <a href="{{ url_for('get_reviews') }}" class="col btn-large black s3 m2 offset-m2">Cancel</a>
+                    <button type="submit" class="col btn-large black s4 m2 offset-s1 offset-m1">Edit review</button>
+                    <!-- Modal Trigger -->
+                    <a class="col btn-large black s3 m2 offset-s1 offset-m1 modal-trigger" href="#modal1">Delete Review</a>
+
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Careful!</h4>
+                            <p>If you agree to this, the review will be deleted from the site and won't be recoverable.</p>
+                            <p>Are you sure you want to continue?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ url_for('delete_review', review_id=review._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
+                    </div>
                 </div>
             </div>
                 
