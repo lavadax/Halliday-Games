@@ -345,6 +345,31 @@ def change_password(user_id):
     abort(403, description="Page forbidden")
 
 
+@app.route("/delete_account/<user_id>")
+def delete_account(user_id):
+    
+    # Check if user is logged in
+    if "user" in session:
+
+        user = mongo.db.users.find_one({"username": session["user"]})
+        # Check if logged in user created the review
+        if user["_id"] == ObjectId(user_id):
+            
+            mongo.db.reviews.delete_many({"created_by": session["user"]})
+            mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+            flash("Account and reviews deleted successfully")
+            return redirect(url_for("get_reviews"))
+        
+        # Redirect when user is trying to edit wrong account
+        # flash("Unable to delete another user's account")
+        flash(user_id)
+        abort(403, description="Page forbidden") 
+
+    # Redirect when user is not logged in
+    flash("Unable to delete an account before logging in")
+    abort(403, description="Page forbidden")
+
+
 @app.errorhandler(403)
 def page_forbidden(e):
     return render_template("403.html"), 403
