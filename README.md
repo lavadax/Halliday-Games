@@ -189,7 +189,7 @@ After some googling, the answer was found on (kezunlin.me)[https://kezunlin.me/p
 
 
 ### Testing User Stories
-<!-- TODO Add user stories testing -->
+
 #### First Time Visitor goals  
   
   * As a new user, I want to easily understand the purpose of the site.  
