@@ -207,11 +207,15 @@ def get_account(user):
         # TODO add top_review and top_genres variable which is a mongodb query using count & aggregate functions 
         # to pass along amount of reviews by user, and top reviewed genres by user
         # Check if a user is logged in before attempting to get account details
-        if session["user"]:
+        if session["user"] == user:
             user = mongo.db.users.find_one(
                 {"username": session["user"]})
             my_reviews = mongo.db.reviews.count_documents({"created_by": ObjectId(user["_id"])})
             return render_template("account.html", user=user, my_reviews=my_reviews)
+
+        # Redirect user as account details for other accounts can't be viewed
+        flash("Unable to access account details for other accounts")
+        abort(403, description="Page forbidden")
 
     except:
         # Redirect user as account details can't be retrieved before first logging in
