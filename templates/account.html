@@ -97,7 +97,21 @@
                 </tr>
             </table>
             <div class="row margin-top">
-                <button type="submit" class="col s6 m4 offset-s3 offset-m4 btn-large black">
+                <!-- Modal Trigger -->
+                <a class="col btn-large black s4 m3 offset-s2 offset-m2 modal-trigger" href="#modal1">Delete Account</a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Careful!</h4>
+                        <p>If you agree to this, your account will be removed from the site, along with all your reviews.</p>
+                        <p>Are you sure you want to continue?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_account', user_id=user._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+                <button type="submit" class="col s4 m3 offset-s2 offset-m2 btn-large black">
                     Change Password <i class="fas fa-sign-in-alt"></i>
                 </button>
             </div>
