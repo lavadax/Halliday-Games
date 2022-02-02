@@ -227,7 +227,8 @@ For more information, and screenshots of the validation, please check [this file
   Once logged in, the user can navigate to the create review page in the nav bar, and easily start filling out a new review.  
 
 ### Functional Testing
-<!-- TODO Add functional testing -->
+  
+* As functional testing is quite expansive, all information has been added [here.](https://github.com/lavadax/Halliday-Games/blob/master/testing.md)
 
 ### Accessibility Testing
   
