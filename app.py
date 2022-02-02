@@ -61,43 +61,48 @@ def search():
     return render_template("search.html", reviews=reviews)
 
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    # Check if a user isn't logged in already
-    if "user" not in session:
+@app.route("/read_review/<review_id>")
+def read_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    return render_template("read_review.html", review=review)
 
-        if request.method == "POST":
 
-            # Check if username exists in db
-            user = request.form.get("username")
-            existing_user = mongo.db.users.find_one(
-                {"username": user.lower()})
-            if existing_user:
-                
-                # Ensure hashed password matches user input
-                if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                    session["user"] = user.lower()
-                    flash("Welcome, {}".format(user))
-                    return redirect(url_for(
-                        "get_account", user=session["user"]))
-                
-                # Invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
+@app.route("/add_review", methods=["GET", "POST"])
+def add_review():
+    if request.method == "POST":
+        try:
+            # Check of a user is logged in before attempting to add a review
+            if session["user"]:
+                # Add review to DB
+                user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+                review_details = {
+                    "created_by": user_id,
+                    "review_date": datetime.today().strftime("%Y-%m-%d"),
+                    "game_title": request.form.get("game_title"),
+                    "review_title": request.form.get("review_title"),
+                    "score": request.form.get("score"),
+                    "review": request.form.get("review"),
+                    "review_summary": request.form.get("review_summary")
+                }
+                review = mongo.db.reviews.insert_one(review_details)
+                flash("Review has been added successfully")
+                return redirect(url_for("read_review", review_id=review["_id"]))
 
-            # Username doesn't exist
-            flash("Incorrect Username and/or Password")
+        except:
+            # Redirect user as a review can't be added without logging in
+            # TODO replace with appropriate error handling (404 or 405)
+            flash("Unable to add a review without logging in")
             return redirect(url_for("login"))
         
-        
-
-        # Return for GET method
-        return render_template("login.html")
-
-    # If user is already logged in
-    flash("You can't log in while logged into an account already")
-    return redirect(url_for("get_account", user=session["user"]))
+    try:
+        # Check if a user is logged in before attempting to add a review
+        if session["user"]:
+            return render_template("add_review.html")
+    except:
+        # Redirect user as a review can't be added without logging in
+        # TODO replace with appropriate error handling (404 or 405)
+        flash("Unable to add a review without logging in")
+        return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -145,42 +150,43 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/add_review", methods=["GET", "POST"])
-def add_review():
-    if request.method == "POST":
-        try:
-            # Check of a user is logged in before attempting to add a review
-            if session["user"]:
-                # Add review to DB
-                user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-                review_details = {
-                    "created_by": user_id,
-                    "review_date": datetime.today().strftime("%Y-%m-%d"),
-                    "game_title": request.form.get("game_title"),
-                    "review_title": request.form.get("review_title"),
-                    "score": request.form.get("score"),
-                    "review": request.form.get("review"),
-                    "review_summary": request.form.get("review_summary")
-                }
-                review = mongo.db.reviews.insert_one(review_details)
-                flash("Review has been added successfully")
-                return redirect(url_for("read_review", review_id=review["_id"]))
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # Check if a user isn't logged in already
+    if "user" not in session:
 
-        except:
-            # Redirect user as a review can't be added without logging in
-            # TODO replace with appropriate error handling (404 or 405)
-            flash("Unable to add a review without logging in")
+        if request.method == "POST":
+
+            # Check if username exists in db
+            user = request.form.get("username")
+            existing_user = mongo.db.users.find_one(
+                {"username": user.lower()})
+            if existing_user:
+                
+                # Ensure hashed password matches user input
+                if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                    session["user"] = user.lower()
+                    flash("Welcome, {}".format(user))
+                    return redirect(url_for(
+                        "get_account", user=session["user"]))
+                
+                # Invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+            # Username doesn't exist
+            flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
         
-    try:
-        # Check if a user is logged in before attempting to add a review
-        if session["user"]:
-            return render_template("add_review.html")
-    except:
-        # Redirect user as a review can't be added without logging in
-        # TODO replace with appropriate error handling (404 or 405)
-        flash("Unable to add a review without logging in")
-        return redirect(url_for("login"))
+        
+
+        # Return for GET method
+        return render_template("login.html")
+
+    # If user is already logged in
+    flash("You can't log in while logged into an account already")
+    return redirect(url_for("get_account", user=session["user"]))
 
 
 @app.route("/logout")
@@ -265,12 +271,6 @@ def change_password(user_id):
         flash("Unable to change password without logging in")
         return render_template("login")
 
-
-
-@app.route("/read_review/<review_id>")
-def read_review(review_id):
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    return render_template("read_review.html", review=review)
 
 
 if __name__ == "__main__":
